@@ -1,23 +1,27 @@
-var webpack = require('webpack');
+'strict';
+
 var path = require('path');
+var cwd = process.cwd();
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-
-var config = {
-  entry: APP_DIR + '/js/index.js',
+const exportsMain = {
+  entry: path.join(cwd, 'src/index'),
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: path.join(cwd, 'dist'),
+    filename: 'main.js',
+    publicPath: './dist/'
   },
-  module : {
-    loaders : [
-		{ test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: {presets: ['es2015', 'react', 'stage-2']}},
-        { test: /\.jsx?/, include: APP_DIR, loader: 'babel'},
-        { test: /\.css$/, loader: "style!css" }
-    ]
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      include: cwd,
+      query: {
+        plugins: ['transform-decorators-legacy'],
+        presets: ['es2015', 'stage-0', 'react']
+      }
+    }]
   }
 };
 
-module.exports = config;
+module.exports = exportsMain;
