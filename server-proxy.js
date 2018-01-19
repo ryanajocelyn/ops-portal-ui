@@ -18,6 +18,8 @@ const fetch = require('isomorphic-fetch');
 const expressPort = 3000;
 const webpackPort = 3001
 
+global.__basedir = __dirname;
+
 const app = express();
 app.use(bodyParser.json());
 app.listen(expressPort);

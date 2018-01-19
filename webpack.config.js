@@ -7,7 +7,7 @@ const exportsMain = {
   entry: path.join(cwd, 'src/index'),
   output: {
     path: path.join(cwd, 'dist'),
-    filename: 'main.js',
+    filename: '[name].js',
     publicPath: './dist/'
   },
   module: {
