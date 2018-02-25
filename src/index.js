@@ -11,15 +11,13 @@ import AppRouter from './route';
 const store = configureStore();
 
 function Root() {
+  //const history = syncHistoryWithStore(createBrowserHistory(), store);
+
   return (<Provider store = { store }>
-            <div>
-              <div>
-                <BrowserRouter>
-                    <AppRouter />
-                </BrowserRouter>
-              </div>
-            </div>
+              <BrowserRouter>
+                  <AppRouter />
+              </BrowserRouter>
           </Provider>);
 }
 
-render(<Root />, document.getElementById("root"));
+render(<Root />, document.getElementById("wrapper"));

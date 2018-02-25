@@ -1,5 +1,5 @@
 {
-  "name": "ops-portal-ui",
+  "name": "ops-portal",
   "version": "1.0.0",
   "description": "Portal Site to automate and improve the efficiency of the day to day activities of PMO and the PM activities related to operational and billing",
   "scripts": {
@@ -45,6 +45,7 @@
     "react-router": "^4.2.0",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-stateless-wrapper": "^1.0.7",
     "react-transform-hmr": "^1.0.4",
     "redux": "^3.7.2",

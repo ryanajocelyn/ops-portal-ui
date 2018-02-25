@@ -4,28 +4,23 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Navbar, NavbarBrand, NavbarToggle, NavbarCollapse } from 'react-bootstrap';
-import { publicActions } from '../../action/header/headerActions';
+import { actions } from '../../action/header/headerActions';
 
 class Header extends Component {
     render() {
         return (
-          <header>
-              <Navbar>
-                  <Navbar.Header>
-                      <Navbar.Brand>
-                          <Link to="/">test</Link>
-                      </Navbar.Brand>
-                      <Navbar.Toggle />
-                  </Navbar.Header>
-                  <Navbar.Collapse />
-              </Navbar>
-          </header>
+              <Navbar.Header>
+                  <Navbar.Brand>
+                      <Link to="/">Operations Portal</Link>
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+              </Navbar.Header>
         );
     }
 }
 
 function mapDispatchToProps (dispatch) {
-  return { actions: bindActionCreators(publicActions, dispatch) };
+  return { actions: bindActionCreators(actions, dispatch) };
 }
 
 function mapStateToProps (state) {

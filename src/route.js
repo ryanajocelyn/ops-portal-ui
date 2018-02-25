@@ -3,19 +3,20 @@ import {render} from 'react-dom';
 import {Router, Route, IndexRoute, Switch} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import DefaultPage from './container/defaultPage';
+import Dashboard from './component/login/dashboard';
+import Associates from './component/associates';
 import Login from './component/login/Login';
 
 class AppRouter extends Component {
   render() {
+    const history = this.props.history;
+
     return (
       <Router history={ createBrowserHistory() }>
-
-          <Switch>
-              <Route exact path='/' component={Login} />
-              <Route path='/dashboard' component={DefaultPage} />
-          </Switch>
-
+          <Route path='/' component={Associates}>
+              <IndexRoute component={Associates} />
+              <Route path='/associate' component={Associates} />
+          </Route>
       </Router>
     );
   }

@@ -5,12 +5,13 @@ import { Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Header from '../header/header';
-import LeftNavBar from '../header/leftNavBar';
-import LeftNavSearch from '../header/leftNavSearch';
-import { actions } from '../../action/login/dashboardActions';
+import Header from './header/header';
+import LeftNavBar from './header/leftNavBar';
+import LeftNavSearch from './header/leftNavSearch';
+import AssociateTable from './associate/AssociateTable';
+import { actions } from '../action/associateActions';
 
-class Dashboard extends React.Component {
+class Associates extends React.Component {
 
   constructor(props) {
     super(props);
@@ -26,6 +27,10 @@ class Dashboard extends React.Component {
 
   }
 
+  componentDidMount() {
+      this.props.actions.fetchAssociates();
+  }
+
   handleChange = event => {
     this.setState({
         [event.target.id]: event.target.value
@@ -33,6 +38,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const { associates } = this.props;
+
     return (
         <nav className="navbar navbar-default navbar-static-top" role="navigation">
             <Header />
@@ -48,10 +55,9 @@ class Dashboard extends React.Component {
             <div id="page-wrapper">
             <div className="row">
                 <div className="col-lg-12">
-                    <h1 className="page-header">Dashboard</h1>
+                    <h1 className="page-header">Associates</h1>
 
-
-
+                    <AssociateTable associates= { associates } />
                 </div>
             </div>
             </div>
@@ -71,4 +77,4 @@ function mapStateToProps (state) {
   return { loginResponse };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Associates);

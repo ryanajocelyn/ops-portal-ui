@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { Grid, Row, Col, Panel, FormGroup, FormControl, Form, Button, Checkbox } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { history } from 'history';
 
 import { actions } from '../../action/login/loginActions';
 
@@ -48,6 +49,20 @@ class Login extends React.Component {
     this.setState({
         [event.target.id]: event.target.value
     });
+  }
+
+  componentDidUpdate() {
+      const { loginResponse } = this.props;
+      const isLoginSuccess = loginResponse.success;
+      console.log('response in update: ' + JSON.stringify(isLoginSuccess));
+
+      if (isLoginSuccess) {
+        const location = {
+            pathname: '/dashboard'
+        };
+        this.props.history.push(location);
+        //window.location = '/dashboard';
+      }
   }
 
   render() {
