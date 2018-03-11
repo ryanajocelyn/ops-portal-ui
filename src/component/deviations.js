@@ -8,43 +8,35 @@ import { connect } from 'react-redux';
 import Header from './header/header';
 import LeftNavBar from './header/leftNavBar';
 import LeftNavSearch from './header/leftNavSearch';
-import AssociateTable from './associate/AssociateTable';
+import DeviationTable from './associate/DeviationTable';
+import DeviationSearch from './associate/DeviationSearch';
 import { actions } from '../action/associateActions';
 
-class Associates extends React.Component {
+class Deviations extends React.Component {
 
   constructor(props) {
     super(props);
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-  }
-
   componentDidMount() {
-      this.props.actions.fetchAssociates();
-  }
-
-  handleChange = event => {
-    this.setState({
-        [event.target.id]: event.target.value
-    });
+      this.props.actions.fetchDeviations();
   }
 
   render() {
-    const { associates } = this.props;
+    const { deviations } = this.props;
 
     return (
-          <div id="page-wrapper">
-          <div className="row">
-              <div className="col-lg-12">
-                  <h1 className="page-header">Associates</h1>
+        <div id="page-wrapper">
+        <div className="row">
+            <div className="col-lg-12">
+                <h1 className="page-header">Clarity Vs FG Deviations</h1>
 
-                  <AssociateTable />
-              </div>
-          </div>
-          </div>
+                <DeviationSearch />
+
+                <DeviationTable deviations= { deviations } />
+            </div>
+        </div>
+        </div>
     );
   }
 }
@@ -60,4 +52,4 @@ function mapStateToProps (state) {
   return { loginResponse };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Associates);
+export default connect(mapStateToProps, mapDispatchToProps)(Deviations);

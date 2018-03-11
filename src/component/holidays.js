@@ -1,20 +1,22 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Grid, Row, Col, Panel, FormGroup, FormControl, Form, Button, Checkbox } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Header from './header/header';
-import LeftNavBar from './header/leftNavBar';
-import LeftNavSearch from './header/leftNavSearch';
-import AssociateTable from './associate/AssociateTable';
+import HolidaysTable from './associate/HolidaysTable';
 import { actions } from '../action/associateActions';
 
-class Associates extends React.Component {
+class Holidays extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+        email: '',
+        password: ''
+    };
   }
 
   handleSubmit = event => {
@@ -23,7 +25,7 @@ class Associates extends React.Component {
   }
 
   componentDidMount() {
-      this.props.actions.fetchAssociates();
+      this.props.actions.fetchHolidays();
   }
 
   handleChange = event => {
@@ -33,15 +35,15 @@ class Associates extends React.Component {
   }
 
   render() {
-    const { associates } = this.props;
+    const { holidays } = this.props;
 
     return (
           <div id="page-wrapper">
           <div className="row">
               <div className="col-lg-12">
-                  <h1 className="page-header">Associates</h1>
+                  <h1 className="page-header">Holidays</h1>
 
-                  <AssociateTable />
+                  <HolidaysTable holidays= { holidays } />
               </div>
           </div>
           </div>
@@ -56,8 +58,8 @@ function mapDispatchToProps (dispatch) {
 }
 
 function mapStateToProps (state) {
-  const { loginResponse } = state.loginReducer;
-  return { loginResponse };
+  const { holidays } = state.associateReducer;
+  return { holidays };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Associates);
+export default connect(mapStateToProps, mapDispatchToProps)(Holidays);

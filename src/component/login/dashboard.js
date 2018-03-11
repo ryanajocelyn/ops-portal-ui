@@ -4,58 +4,69 @@ import { Grid, Row, Col, Panel, FormGroup, FormControl, Form, Button, Checkbox }
 import { Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Dashboard from 'react-dazzle';
 
-import Header from '../header/header';
-import LeftNavBar from '../header/leftNavBar';
-import LeftNavSearch from '../header/leftNavSearch';
+import Login from './Login';
+import NotificationTable from '../chart/NotificationTable';
+import NBLStatWidget from '../chart/NBLStatWidget';
+//import BarChart from '../chart/barchart';
 import { actions } from '../../action/login/dashboardActions';
 
-class Dashboard extends React.Component {
+class OpsDashboard extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-        email: '',
-        password: ''
+      widgets: {
+        NotificationWidget: {
+          type: NotificationTable,
+          title: 'Notifications',
+        }, NBLStatWidget: {
+          type: NBLStatWidget,
+          title: 'Non-Billable',
+        }
+      },
+      layout: {
+        rows: [{
+          columns: [{
+            className: 'col-md-3',
+            widgets: [{key: 'NBLStatWidget'}],
+          }, {
+            className: 'col-md-3',
+            widgets: [{key: 'NBLStatWidget'}],
+          }, {
+            className: 'col-md-3',
+            widgets: [{key: 'NBLStatWidget'}],
+          }, {
+            className: 'col-md-3',
+            widgets: [{key: 'NBLStatWidget'}],
+          }],
+        }, {
+          columns: [{
+            className: 'col-md-8',
+            widgets: [{key: 'NotificationWidget'}],
+          }, {
+            className: 'col-md-4',
+            widgets: [{key: 'NotificationWidget'}],
+          }],
+        }],
+      }
     };
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-  }
-
-  handleChange = event => {
-    this.setState({
-        [event.target.id]: event.target.value
-    });
   }
 
   render() {
     return (
-        <nav className="navbar navbar-default navbar-static-top" role="navigation">
-            <Header />
-            <Navbar.Collapse />
+        <div id="page-wrapper">
+        <div className="row">
+            <div className="col-lg-12">
+                <h1 className="page-header">Dashboard</h1>
 
-            <div className="navbar-default sidebar" role="navigation">
-                <div className="sidebar-nav navbar-collapse">
-                    <LeftNavSearch />
-                    <LeftNavBar />
-                </div>
+                <Dashboard  widgets={this.state.widgets} layout={this.state.layout}  />
             </div>
+        </div>
+        </div>
 
-            <div id="page-wrapper">
-            <div className="row">
-                <div className="col-lg-12">
-                    <h1 className="page-header">Dashboard</h1>
-
-
-
-                </div>
-            </div>
-            </div>
-        </nav>
     );
   }
 }
@@ -71,4 +82,4 @@ function mapStateToProps (state) {
   return { loginResponse };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(OpsDashboard);

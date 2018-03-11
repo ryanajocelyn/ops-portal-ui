@@ -36,17 +36,41 @@ class LeftNavBar extends Component {
       //  onSelect={this.navigate}
         return (
               <Nav id="side-menu">
-                  <LinkContainer to="/">
-                  <NavItem eventKey={1}>
-                			<i className="fa fa-dashboard fa-fw"></i> Dashboard
-              		</NavItem>
-                  </LinkContainer>
+                  <li  role="presentation">
+                    <Link to="/dashboard">
+                        <i className="fa fa-dashboard fa-fw"></i> Dashboard
+                    </Link>
+                  </li>
 
-                  <LinkContainer to="/associate">
-                  <NavItem eventKey={2} >
-                			<i className="fa fa-table fa-fw"></i> Associates
-              		</NavItem>
-                  </LinkContainer>
+                  <li  role="presentation">
+                    <Link to="/associate">
+                  			<i className="fa fa-user fa-fw"></i> Associates
+                    </Link>
+                  </li>
+
+                  <li  role="presentation">
+                    <Link to="/deviations">
+                        <i className="fa fa-money fa-fw"></i> Clarity-FG Deviations
+                    </Link>
+                  </li>
+
+                  <li  role="presentation">
+                    <Link to="/margins">
+                        <i className="fa fa-book fa-fw"></i> Margin Workbook
+                    </Link>
+                  </li>
+
+                  <li  role="presentation">
+                    <Link to="/ubr">
+                        <i className="fa fa-dollar fa-fw"></i> Unbilled Revenue
+                    </Link>
+                  </li>
+
+                  <li  role="presentation">
+                    <Link to="/holidays">
+                        <i className="fa fa-taxi fa-fw"></i> Holidays
+                    </Link>
+                  </li>
               </Nav>
         );
     }

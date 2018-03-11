@@ -22,7 +22,8 @@ class Login extends React.Component {
     event.preventDefault();
 
     console.log(this.state);
-    this.props.actions.doLogin(this.state);
+    // uncomment for login functionality
+    //this.props.actions.doLogin(this.state);
   }
 
   getValidationState() {
@@ -56,7 +57,9 @@ class Login extends React.Component {
       const isLoginSuccess = loginResponse.success;
       console.log('response in update: ' + JSON.stringify(isLoginSuccess));
 
-      if (isLoginSuccess) {
+      // comment for login functionality
+      //if (isLoginSuccess) {
+      if (true) {
         const location = {
             pathname: '/dashboard'
         };
@@ -78,7 +81,7 @@ class Login extends React.Component {
                           <Form id="loginFormId" onSubmit={this.handleSubmit}>
                             <FormGroup controlId="email"
                                        validationState={this.getValidationState()} >
-                                  <FormControl type="email" placeholder="E-mail"
+                                  <FormControl type="text" placeholder="Username"
                                                 onChange={this.handleChange}/>
                             </FormGroup>
                             <FormGroup controlId="password"

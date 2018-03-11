@@ -1,14 +1,14 @@
-import { doLogin } from '../../service/login/loginService';
+import { fetchAllAccounts } from '../../service/associateService';
 
-export const DO_LOGIN = 'DO_LOGIN';
+export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS';
 
 export const actions = {
-    doLogin: (loginState) => {
+    fetchAllAccounts1111: (loginState) => {
         return {
-            type: `${DO_LOGIN}`,
+            type: `${FETCH_ACCOUNTS}`,
             payload: {
-              promise: doLogin(loginState)
+              promise: fetchAllAccounts(loginState)
             }
-        };
+        };a
     }
 };

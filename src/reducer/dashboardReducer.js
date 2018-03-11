@@ -1,25 +1,12 @@
-import { DO_LOGIN } from '../action/login/loginActions';
+import { FETCH_ACCOUNTS } from '../action/login/dashboardActions';
 
 const initialState = {
-    loginResponse: {
-        success: '',
-        errorCode: '',
-        errorDescription: ''
-    }
+    accounts: []
 };
 
 export default function dashboardReducer(state = initialState, action) {
   console.log('reducers: ' + action.type);
   switch (action.type) {
-    case `${DO_LOGIN}_FULFILLED`: {
-      console.log('value assigning..' + JSON.stringify(action.payload));
-      return {
-        ...state,
-        loginResponse: action.payload
-      };
-
-      break;
-    }
     default:
       return state;
   }
